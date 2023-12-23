@@ -12,10 +12,11 @@
         'views/hospital_appointment_views.xml',
         'views/hospital_medical_record_views.xml',
         
-        # Add other XML files if you have any
+        
     ],
     'demo': [
-        # XML files with demo data, if you have any
+        'demo/demo.xml',
+        
     ],
     'installable': True,
     'application': True,

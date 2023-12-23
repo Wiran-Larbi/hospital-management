@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_hospital_appointment_kanban" model="ir.ui.view">
+            <field name="name">hospital.appointment.kanban</field>
+            <field name="model">hospital.appointment</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="status">
+                    <field name="status"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click oe_kanban_card {{record.status.raw_value == 'scheduled' ? 'bg-warning' : record.status.raw_value == 'completed' ? 'bg-success' : 'bg-danger'}}">
+                                <div class="oe_kanban_details">
+                                    <strong>Appointment:</strong>
+                                    <t t-esc="record.patient_id.value"/>
+                                    <div>
+                                        <strong>Doctor:</strong>
+                                        <t t-esc="record.doctor_id.value"/>
+                                    </div>
+                                    <div>
+                                        <strong>Date:</strong>
+                                        <t t-esc="record.date_time.value"/>
+                                    </div>
+                                    <div>
+                                        <strong>Reason:</strong>
+                                        <t t-esc="record.reason.value"/>
+                                    </div>
+                                    <div>
+                                        <strong>Status:</strong>
+                                        <t t-esc="record.status.value"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+    </data>
+</odoo>
