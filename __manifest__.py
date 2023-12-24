@@ -6,8 +6,9 @@
     'depends': ['base'],
     'data': [
         'security/groups.xml',
-        'views/menu.xml',
         'security/ir.model.access.csv',
+        'security/record_rules.xml',
+        'views/menu.xml',
         'views/hospital_patient_views.xml',
         'views/hospital_doctor_views.xml',
         'views/hospital_appointment_views.xml',
