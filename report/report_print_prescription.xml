@@ -1,0 +1,85 @@
+<template id="hospital-management.prescription_report_template">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <div class="page">
+                <div class="oe_structure">
+                    <h3 class="text-center mb32">
+                        <strong>PRESCRIPTION REPORT</strong>
+                    </h3>
+                    <table class="table table-condensed">
+                        <tr>
+                            <!-- Doctor Information -->
+                            <th style="border: 0px ;" class="text-left">Doctor:
+                                <br/>
+                                <span style="font-weight:normal;" t-field="doc.doctor_id.name"/>
+                                <br/>
+                                <span style="font-weight:normal;" t-field="doc.doctor_id.specialization"/>
+                                <br/>
+                                <span style="font-weight:normal;" t-field="doc.doctor_id.contact"/>
+                            </th>
+                            
+                            <!-- Patient Information -->
+                            <th style="border: 0px ;" class="text-left">Patient:
+                                <br/>
+                                <span style="font-weight:normal;" t-field="doc.patient_id.name"/>
+                                <br/>
+                                <span style="font-weight:normal;" t-field="doc.patient_id.age"/>
+                                <br/>
+                                <span style="font-weight:normal;" t-field="doc.patient_id.gender"/>
+                                <br/>
+                                <span style="font-weight:normal;" t-field="doc.patient_id.contact"/>
+                            </th>
+                            
+                            <!-- Appointment Information -->
+                            <th style="border: 0px ;" class="text-left">Appointment:
+                                <br/>
+                                <span style="font-weight:normal;" t-field="doc.appointment_id.date_time"/>
+                                <br/>
+                                <span style="font-weight:normal;" t-field="doc.appointment_id.reason"/>
+                                <br/>
+                                <span style="font-weight:normal;" t-field="doc.appointment_id.status"/>
+                            </th>
+                            
+                            <!-- Medical Record Information -->
+                            <th style="border: 0px ;" class="text-left">Medical Record:
+                                <br/>
+                                <span style="font-weight:normal;" t-field="doc.medical_record_id.diagnosis"/>
+                                <br/>
+                                <span style="font-weight:normal;" t-field="doc.medical_record_id.prescription"/>
+                            </th>
+                        </tr>
+                    </table>
+                    
+                    <!-- Prescription Details (if any) -->
+                    <div>
+                        <table class="table table-condensed">
+                            <!-- Add prescription details based on your model -->
+                            <tr t-foreach="doc.prescription_line_ids" t-as="line">
+                                <!-- Include prescription line details -->
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <!-- Notes and Doctor Signature -->
+                    <div class="row mt32 mb32" id="informations">
+                        <div class="col-xs-3">
+                            <strong>Notes:</strong>
+                            <span t-field="doc.notes"/>
+                        </div>
+                    </div>
+                    <div class="text-right mb32">
+                        <strong>Doctor Signature:</strong>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+</template>
+
+<template id="hospital-management.prescription_report">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="hospital-management.prescription_report_template" t-lang="doc.doctor_id.partner_id.lang"/>
+        </t>
+    </t>
+</template>
