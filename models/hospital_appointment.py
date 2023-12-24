@@ -8,9 +8,14 @@ class HospitalAppointment(models.Model):
     patient_id = fields.Many2one('hospital.patient', string='Patient', required=True)
     doctor_id = fields.Many2one('hospital.doctor', string='Doctor', required=True)
     date_time = fields.Datetime(string='Date and Time', required=True)
+    date_start = fields.Datetime()
     reason = fields.Text(string='Reason for Appointment')
     status = fields.Selection([('scheduled', 'Scheduled'),('completed', 'Completed'),('cancelled', 'Cancelled')],default='scheduled', string='Status')
     
+    def print_prescription(self):
+        return self.env.ref('hospital-management.report_print_prescription').report_action(self)
+
+
     ##def schedule(self):
     ##    self.ensure_one()
 	##	self.status = 'scheduled'

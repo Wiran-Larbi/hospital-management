@@ -46,6 +46,7 @@
             </field>
         </record>
 
+  
         <!-- Menu Item Definitions -->
         <menuitem id="hospital-management.menu_hospital_main"
                   name="Hospital Management"
@@ -74,5 +75,7 @@
                   parent="hospital-management.menu_hospital_main"
                   action="hospital-management.action_hospital_medical_records"
                   sequence="40"/>
+
+       
     </data>
 </odoo>
