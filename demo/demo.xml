@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Demo Patients -->
+        <record id="hospital_management.demo_patient_1" model="hospital.patient">
+            <field name="name">Fatima Zahra</field>
+            <field name="age">28</field>
+            <field name="gender">female</field>
+            <field name="contact">+212 600 123456</field>
+        </record>
+
+        <record id="hospital_management.demo_patient_2" model="hospital.patient">
+            <field name="name">Youssef Amine</field>
+            <field name="age">34</field>
+            <field name="gender">male</field>
+            <field name="contact">+212 600 654321</field>
+        </record>
+
+        <!-- Demo Doctors -->
+        <record id="hospital_management.demo_doctor_1" model="hospital.doctor">
+            <field name="name">Dr. Amina Alami</field>
+            <field name="specialization">Cardiologist</field>
+            <field name="contact">+212 601 123456</field>
+        </record>
+
+        <record id="hospital_management.demo_doctor_2" model="hospital.doctor">
+            <field name="name">Dr. Hassan Fassi</field>
+            <field name="specialization">Neurologist</field>
+            <field name="contact">+212 601 654321</field>
+        </record>
+
+        <!-- Demo Appointments -->
+        <record id="hospital_management.demo_appointment_1" model="hospital.appointment">
+            <field name="patient_id" ref="hospital_management.demo_patient_1"/>
+            <field name="doctor_id" ref="hospital_management.demo_doctor_1"/>
+            <field name="date_time">2023-03-15 10:00:00</field>
+            <field name="reason">Regular Checkup</field>
+            <field name="status">scheduled</field>
+        </record>
+
+        <record id="hospital_management.demo_appointment_2" model="hospital.appointment">
+            <field name="patient_id" ref="hospital_management.demo_patient_2"/>
+            <field name="doctor_id" ref="hospital_management.demo_doctor_2"/>
+            <field name="date_time">2023-03-16 11:00:00</field>
+            <field name="reason">Consultation for headache</field>
+            <field name="status">scheduled</field>
+        </record>
+
+        <!-- Demo Medical Records -->
+        <record id="hospital_management.demo_medical_record_1" model="hospital.medical_record">
+            <field name="patient_id" ref="hospital_management.demo_patient_1"/>
+            <field name="date">2023-03-01</field>
+            <field name="diagnosis">Hypertension</field>
+            <field name="prescription">Medication A, Medication B</field>
+        </record>
+
+        <record id="hospital_management.demo_medical_record_2" model="hospital.medical_record">
+            <field name="patient_id" ref="hospital_management.demo_patient_2"/>
+            <field name="date">2023-03-02</field>
+            <field name="diagnosis">Migraine</field>
+            <field name="prescription">Medication C</field>
+        </record>
+    </data>
+</odoo>
