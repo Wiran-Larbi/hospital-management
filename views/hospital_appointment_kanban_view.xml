@@ -2,6 +2,7 @@
 <odoo>
     <data>
         <record id="view_hospital_appointment_kanban" model="ir.ui.view">
+            <field name="priority" eval="1"/>
             <field name="name">hospital.appointment.kanban</field>
             <field name="model">hospital.appointment</field>
             <field name="arch" type="xml">
@@ -12,22 +13,26 @@
                             <div t-attf-class="oe_kanban_global_click oe_kanban_card {{record.status.raw_value == 'scheduled' ? 'bg-warning' : record.status.raw_value == 'completed' ? 'bg-success' : 'bg-danger'}}">
                                 <div class="oe_kanban_details">
                                     <strong>Appointment:</strong>
-                                    <t t-esc="record.patient_id.value"/>
+                                    <span>
+                                        <field name="patient_id"/>
+                                    </span>
                                     <div>
                                         <strong>Doctor:</strong>
-                                        <t t-esc="record.doctor_id.value"/>
+                                        <span>
+                                            <field name="doctor_id"/>
+                                        </span>
                                     </div>
                                     <div>
                                         <strong>Date:</strong>
-                                        <t t-esc="record.date_time.value"/>
+                                        <field name="date_time"/>
                                     </div>
                                     <div>
                                         <strong>Reason:</strong>
-                                        <t t-esc="record.reason.value"/>
+                                        <field name="reason"/>
                                     </div>
                                     <div>
                                         <strong>Status:</strong>
-                                        <t t-esc="record.status.value"/>
+                                        <field name="status"/>
                                     </div>
                                 </div>
                             </div>
