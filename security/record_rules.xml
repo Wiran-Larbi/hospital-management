@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-        <record id="hospital_patient_rule_all" model="ir.rule">
-            <field name="name">Hospital Patient Rule</field>
-            <field name="model_id" ref="model_hospital_patient"/>
-            <field name="domain_force">[(1, '=', 1)]</field>
-            <field name="perm_read">1</field>
-            <field name="perm_write">1</field>
-            <field name="perm_create">1</field>
-            <field name="perm_unlink">1</field>
+        <!-- Rule for Patient's Own Contact Details -->
+        <record id="patient_own_details_rule" model="ir.rule">
+            <field name="name">Patient Own Contact Details</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="groups" eval="[(4, ref('hospital-management.group_hospital_patient'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="domain_force">[('id', '=', user.partner_id.id)]</field>
         </record>
-        <!-- You can add more rules for other models similarly -->
+
+        <!-- Rule for Patient's Own Appointments -->
+        <record id="patient_own_appointments_rule" model="ir.rule">
+            <field name="name">Patient Own Appointments</field>
+            <field name="model_id" ref="hospital-management.model_hospital_appointment"/>
+            <field name="groups" eval="[(4, ref('hospital-management.group_hospital_patient'))]"/>
+            <field name="domain_force">[('patient_id', '=', user.partner_id.id)]</field>
+        </record>
+
+        <!-- Rule for Patient's Own Medical Records -->
+        <record id="patient_own_medical_records_rule" model="ir.rule">
+            <field name="name">Patient Own Medical Records</field>
+            <field name="model_id" ref="hospital-management.model_hospital_medical_record"/>
+            <field name="groups" eval="[(4, ref('hospital-management.group_hospital_patient'))]"/>
+            <field name="domain_force">[('patient_id', '=', user.partner_id.id)]</field>
+        </record>
     </data>
 </odoo>
