@@ -29,20 +29,35 @@
             </tree>
         </field>
     </record>
-
-    <record id="action_hospital_patients" model="ir.actions.act_window">
-        <field name="name">Patients</field>
-        <field name="res_model">hospital.patient</field>
-        <field name="view_mode">tree,form</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Create the first patient
-            </p>
+    <record id="view_hospital_patient_graph" model="ir.ui.view">
+        <field name="name">hospital.patient.graph</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <graph string="Patients Statistics" type="bar">
+                <field name="age" type="measure"/>
+                <field name="gender" group="True"/>
+                <field name="gender" type="row" invisible="1"/>
+                <field name="appointment_count" type="measure"/>
+                <field name="appointment_count" type="row"/>
+                <field name="gender" type="col"/>
+            </graph>
         </field>
     </record>
+    <record id="hospital-management.action_hospital_patients" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="view_ids" eval="[(5, 0, 0), 
+                                   (ref('view_hospital_patient_tree'), 'tree'), 
+                                   (ref('view_hospital_patient_form'), 'form'), 
+                                   (ref('view_hospital_patient_graph'), 'graph')]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create your first patient record.</p>
+        </field>
+    </record>
+    <menuitem id="hospital-management.menu_hospital_patient" name="Patients" parent="hospital-management.menu_hospital_main" action="hospital-management.action_hospital_patients" sequence="10"/>
 
-    <menuitem id="menu_hospital_patient" name="Patients"
-              action="action_hospital_patients"
-              parent="menu_hospital_main"/>
+
+
 
 </odoo>

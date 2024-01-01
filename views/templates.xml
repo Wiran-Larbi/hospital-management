@@ -29,4 +29,35 @@
             </t>
         </t>
     </template>
+    <template id="medical_record_report">
+        <t t-name="hospital-management.report_medical_record">
+            <div class="page">
+                <div class="header">
+                    <!-- Doctor's information -->
+                    <div class="doctor-info">
+                        <h3>Dr. <span t-field="doc.doctor_id.name"/></h3>
+                        <p><strong>Spécialité:</strong> <span t-field="doc.doctor_id.specialization"/></p>
+                    </div>
+                </div>
+                <h2>Ordonnance Médicale</h2>
+                <div class="body">
+                    <p>Fait à: <span t-field="doc.date"/></p>
+                    <p>Nom & Prénom: <span t-field="doc.patient_id.name"/></p>
+                    <p><strong>Diagnostic:</strong> <span t-field="doc.diagnosis"/></p>
+                    <!-- Prescription details -->
+                    <p><strong>Prescription:</strong>
+                        <pre t-field="doc.prescription"/>
+                    </p>
+                </div>
+                <div class="footer">
+                    <!-- Doctor's contact details -->
+                    <div class="doctor-contact">
+                        <p><strong>Tél:</strong> <span t-field="doc.doctor_id.contact"/></p>
+                        <p><strong>Email:</strong> <span t-field="doc.doctor_id.name"/>@gmail.com</p>
+                        <p><strong>Adresse:</strong>Hay moulay rachid 04 , Casablanca</p>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
 </odoo>

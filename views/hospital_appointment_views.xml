@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="view_hospital_appointment_form" model="ir.ui.view">
-    
+
         <field name="name">hospital.appointment.form</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
@@ -20,7 +20,7 @@
     </record>
 
     <record id="view_hospital_appointment_tree" model="ir.ui.view">
-    <field name="priority" eval="2"/>
+        <field name="priority" eval="2"/>
         <field name="name">hospital.appointment.tree</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
@@ -33,6 +33,33 @@
             </tree>
         </field>
     </record>
+    <record id="view_hospital_appointment_graph" model="ir.ui.view">
+        <field name="name">hospital.appointment.graph</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <graph string="Appointments by Specialization" type="bar">
+                <field name="doctor_specialization" type="row" group="True"/>
+                <field name="id" type="measure" operator="count"/>
+            </graph>
+        </field>
+    </record>
+    <record id="action_hospital_appointments" model="ir.actions.act_window">
+        <field name="name">Appointments</field>
+        <field name="res_model">hospital.appointment</field>
+        <field name="view_mode">kanban,tree,form,graph</field>
+        <field name="view_ids" eval="[
+        (ref('view_hospital_appointment_kanban'), 'kanban'),
+        (ref('view_hospital_appointment_tree'), 'tree'),
+        (ref('view_hospital_appointment_form'), 'form'),
+        (ref('view_hospital_appointment_graph'), 'graph')
+    ]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Schedule an appointment</p>
+        </field>
+    </record>
 
-    
+    <menuitem id="hospital-management.menu_hospital_appointment" name="Appointments" parent="hospital-management.menu_hospital_main" action="action_hospital_appointments" sequence="30"/>
+
+
+
 </odoo>

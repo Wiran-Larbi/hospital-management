@@ -1,7 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
-import logging
-_logger = logging.getLogger(__name__)
+
 
 class HospitalPatient(models.Model):
     _name = 'hospital.patient'
@@ -16,21 +15,28 @@ class HospitalPatient(models.Model):
     ], required=True, default='male')
     contact = fields.Char(string='Contact Number')
     
+    # Stored computed field for the count of appointments
+    appointment_count = fields.Integer(string='Appointment Count', compute='_compute_appointment_count', store=True)
+
+    @api.depends('appointment_ids')
+    def _compute_appointment_count(self):
+        for record in self:
+            record.appointment_count = len(record.appointment_ids)
+
+    # Assuming you have a one2many relation from patients to appointments
+    appointment_ids = fields.One2many('hospital.appointment', 'patient_id', string='Appointments')
     @api.model
     def create(self, vals):
-        # Create the doctor record
-        _logger.info("wa hnaaaaaaaaaaaa Creating a new patient record wa hanaaaaaaaaaaaaaa: %s", vals)
+        
         patient_record = super(HospitalPatient, self).create(vals)
 
-        # Prepare user values
         user_vals = {
             'name': patient_record.name,
             'login': patient_record.name.replace(" ", "_").lower(),  
             'password': patient_record.name.replace(" ", "_").lower(),
-            'groups_id': [(4, self.env.ref('hospital-management.group_patient').id)]
+            'groups_id': [(4, self.env.ref('hospital-management.group_hospital_patient').id)]
         }
-
-        # Create the user
+        # Creation of the patient
         try:
             self.env['res.users'].sudo().create(user_vals)
         except Exception as e:

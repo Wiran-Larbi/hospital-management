@@ -2,16 +2,8 @@
 <odoo>
     <data>
         <!-- Action Definitions -->
-        <record id="hospital-management.action_hospital_patients" model="ir.actions.act_window">
-            <field name="name">Patients</field>
-            <field name="res_model">hospital.patient</field>
-            <field name="view_mode">tree,form</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Create your first patient record.
-                </p>
-            </field>
-        </record>
+
+
 
         <record id="hospital-management.action_hospital_doctors" model="ir.actions.act_window">
             <field name="name">Doctors</field>
@@ -24,18 +16,9 @@
             </field>
         </record>
 
-        <record id="action_hospital_appointments" model="ir.actions.act_window">
-            <field name="name">Appointments</field>
-            <field name="res_model">hospital.appointment</field>
-            <field name="view_mode">kanban,tree,form</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-            Schedule an appointment
-                </p>
-            </field>
-        </record>
+        
 
-        <record id="hospital-management.action_hospital_medical_records" model="ir.actions.act_window">
+        <!-- <record id="hospital-management.action_hospital_medical_records" model="ir.actions.act_window">
             <field name="name">Medical Records</field>
             <field name="res_model">hospital.medical_record</field>
             <field name="view_mode">tree,form</field>
@@ -44,17 +27,16 @@
                     Manage patient medical records.
                 </p>
             </field>
-        </record>
+        </record> -->
+        
 
         <!-- Menu Item Definitions -->
         <menuitem id="hospital-management.menu_hospital_main" name="Hospital Management" sequence="1"/>
 
-        <menuitem id="hospital-management.menu_hospital_patient" name="Patients" parent="hospital-management.menu_hospital_main" action="hospital-management.action_hospital_patients" sequence="10"/>
+
 
         <menuitem id="hospital-management.menu_hospital_doctor" name="Doctors" parent="hospital-management.menu_hospital_main" action="hospital-management.action_hospital_doctors" sequence="20"/>
 
-        <menuitem id="hospital-management.menu_hospital_appointment" name="Appointments" parent="hospital-management.menu_hospital_main" action="action_hospital_appointments" sequence="30"/>
-
-        <menuitem id="hospital-management.menu_hospital_medical_record" name="Medical Records" parent="hospital-management.menu_hospital_main" action="hospital-management.action_hospital_medical_records" sequence="40"/>
-    </data>
+<!--         <menuitem id="hospital-management.menu_hospital_medical_record" name="Medical Records" parent="hospital-management.menu_hospital_main" action="hospital-management.action_hospital_medical_records" sequence="40"/>
+ -->    </data>
 </odoo>

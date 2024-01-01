@@ -14,11 +14,10 @@
         'views/hospital_appointment_views.xml',
         'views/hospital_medical_record_views.xml',
         'views/hospital_appointment_kanban_view.xml',
-        'views/hospital_login.xml',
         
     ],
     'demo': [
-        'demo/demo.xml',
+        
         
     ],
     'installable': True,

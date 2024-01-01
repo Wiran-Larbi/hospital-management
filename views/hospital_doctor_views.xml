@@ -27,6 +27,8 @@
             </tree>
         </field>
     </record>
+    
+
 
     <record model="ir.actions.act_window" id="action_hospital_doctors">
         <field name="name">Doctors</field>
@@ -39,7 +41,5 @@
         </field>
     </record>
 
-    <menuitem id="menu_hospital_doctor" name="Doctors"
-              action="action_hospital_doctors"
-              parent="menu_hospital_main"/>
+    <menuitem id="menu_hospital_doctor" name="Doctors" action="action_hospital_doctors" parent="menu_hospital_main"/>
 </odoo>

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- Group for Doctors -->
+        
         <record id="group_hospital_doctor" model="res.groups">
             <field name="name">Doctor</field>
         </record>
 
-        <!-- Group for Patients -->
+        
         <record id="group_hospital_patient" model="res.groups">
             <field name="name">Patient</field>
         </record>
 
-        <!-- Add other groups as needed -->
     </data>
 </odoo>
