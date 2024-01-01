@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <!-- Action Definitions -->
-
+        
 
 
         <record id="hospital-management.action_hospital_doctors" model="ir.actions.act_window">

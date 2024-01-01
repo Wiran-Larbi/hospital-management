@@ -14,3 +14,9 @@ class HospitalAppointment(models.Model):
         ('completed', 'Completed'),
         ('cancelled', 'Cancelled'),
     ], default='scheduled', string='Status')
+    
+    
+    def print_appointment(self):
+        for record in self:
+            self.ensure_one()
+            return self.env.ref('hospital-management.appointment_pdf_report').report_action(self)

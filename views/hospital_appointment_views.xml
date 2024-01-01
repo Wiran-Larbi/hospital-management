@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    
     <record id="view_hospital_appointment_form" model="ir.ui.view">
 
         <field name="name">hospital.appointment.form</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <form string="Appointment">
+                <header>
+                    <button string="Print Appointment" type="object" name="print_appointment" class="btn-primary"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="patient_id"/>
@@ -43,6 +47,52 @@
             </graph>
         </field>
     </record>
+    <report id="appointment_pdf_report" model="hospital.appointment" string="Appointment" report_type="qweb-pdf" name="hospital-management.report_appointment_document" file="hospital-management.report_appointment_document" print_report_name="'Appointment - %s - %s' % (object.patient_id.name,object.doctor_id.name)" />
+    <!-- QWeb Template for the Appointment PDF Report -->
+    <template id="report_appointment_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="hospital-management.report_appointment_document_layout"/>
+            </t>
+        </t>
+    </template>
+
+    <!-- Layout Template for the Appointment PDF report -->
+    <template id="report_appointment_document_layout">
+        <t t-name="hospital-management.report_appointment_document">
+            <div class="page">
+                <div class="header">
+                    <h2>Appointment Details</h2>
+                </div>
+                <div class="body">
+                    <p>
+                        <strong>Patient:</strong>
+                        <span t-field="doc.patient_id.name"/>
+                    </p>
+                    <p>
+                        <strong>Doctor:</strong>
+                        <span t-field="doc.doctor_id.name"/>
+                    </p>
+                    <p>
+                        <strong>Specialization:</strong>
+                        <span t-field="doc.doctor_specialization"/>
+                    </p>
+                    <p>
+                        <strong>Date and Time:</strong>
+                        <span t-field="doc.date_time"/>
+                    </p>
+                    <p>
+                        <strong>Reason:</strong>
+                        <span t-field="doc.reason"/>
+                    </p>
+                    <p>
+                        <strong>Status:</strong>
+                        <span t-field="doc.status"/>
+                    </p>
+                </div>
+            </div>
+        </t>
+    </template>
     <record id="action_hospital_appointments" model="ir.actions.act_window">
         <field name="name">Appointments</field>
         <field name="res_model">hospital.appointment</field>
